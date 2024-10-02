@@ -1,0 +1,165 @@
+/*Inventory Management System*/
+
+import java.lang.*;
+import java.util.*;
+class Product
+{
+	int id;
+	String name;
+	double price;
+	int stock;
+	public Product(int id,String name,double price,int stock)
+	{
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.stock = stock;
+	}
+	public void display()
+	{
+		System.out.println("ID: "+id);
+		System.out.println("Name: "+ name);
+		System.out.println("Price: "+price);
+		System.out.println("Stock: "+stock);
+	}
+}
+public class inventorymanager
+{
+	private static final int MAX_PRODUCTS = 100;
+	private static Product[] products = new Product[MAX_PRODUCTS];
+	private static int productCount = 0;
+	public static void main(String [] args)
+	{
+		Scanner S = new Scanner(System.in);
+		int c;
+		System.out.println("Inventory Management System: ");
+		System.out.println("1.Add");
+		System.out.println("2.Edit");
+		System.out.println("3.Delete");
+		System.out.println("4.View");
+		System.out.println("5.Low Stock");
+		System.out.println("6.Exit");
+		do{
+			System.out.print("Enter your choice: ");
+			c = S.nextInt();
+			switch(c)
+			{
+				case 1: {
+					add(S);
+					break;
+				}
+				case 2:{
+					edit(S);
+					break;
+				}
+				case 3:{
+					delete(S);
+					break;
+				}
+				case 4:{
+					view();
+					break;
+				}
+				case 5:{
+					lowstock();
+					break;
+				}
+				case 6:{
+					System.out.println("Exiting....");
+					break;
+				}
+			}
+		}while(c!=0);
+	}
+	private static void add(Scanner S)
+	{
+		if (productCount >= MAX_PRODUCTS) {
+			System.out.println("Inventory is full! Cannot add more products");
+		}
+		System.out.print("Enter Product ID: ");
+        	int id = S.nextInt();
+        	S.nextLine();
+		System.out.print("Enter Product Name: ");
+        	String name = S.nextLine();
+		System.out.print("Enter Product Price: ");
+        	double price = S.nextDouble();
+		System.out.print("Enter Product Stock: ");
+        	int stock = S.nextInt();
+		products[productCount] = new Product(id, name, price, stock);
+        	productCount++;
+        	System.out.println("Product added successfully.");
+	}
+	private static void edit(Scanner S)
+	{
+		System.out.print("Enter Product ID to edit: ");
+        	int id = S.nextInt();
+		for (int i = 0; i < productCount; i++) 
+		{
+			if (products[i].id == id) 
+			{
+				S.nextLine();
+				System.out.print("Enter new name : ");
+                		products[i].name = S.nextLine();
+				System.out.print("Enter new price (current: $" + products[i].price + "): ");
+                		products[i].price = S.nextDouble();
+				System.out.print("Enter new stock (current: " + products[i].stock + "): ");
+                		products[i].stock = S.nextInt();
+				System.out.println("Product updated successfully.");
+				return;
+			}
+		}
+		System.out.println("Product not found");
+	}
+	private static void delete(Scanner S)
+	{
+		System.out.print("Enter Product ID to delete: ");
+        	int id = S.nextInt();
+		for (int i = 0; i < productCount; i++)
+		{
+			if (products[i].id == id)
+			{
+				for (int j = i; j < productCount - 1; j++)
+				{
+					products[j] = products[j + 1];
+				}
+				products[productCount - 1] = null;
+				productCount--;
+                		System.out.println("Product deleted successfully.");
+				return;
+			}
+		}
+			System.out.println("Product not found");
+	}
+	private static void view()
+	{
+		if (productCount == 0) 
+		{
+            		System.out.println("No products in inventory.");
+		}
+		System.out.println("\n--- Product List ---");
+        	for (int i = 0; i < productCount; i++) 
+		{
+            		products[i].display();
+        	}
+	}
+	private static void lowstock()
+	{
+		System.out.print("Enter the low-stock threshold: ");
+        	Scanner n = new Scanner(System.in);
+        	int threshold = n.nextInt();
+		System.out.println("\n--- Low Stock Products ---");
+        	boolean foundLowStock = false;
+        	for (int i = 0; i < productCount; i++) 
+		{
+            		if (products[i].stock < threshold) 
+			{
+                		products[i].display();
+                		foundLowStock = true;
+            		}
+        	}
+		if (!foundLowStock) 
+		{
+            		System.out.println("No products with stock below the threshold.");
+        	}
+	}
+}
