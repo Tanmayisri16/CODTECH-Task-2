@@ -18,11 +18,11 @@ This project is a console-based Java program that allows users to manage invento
 
 The project implements several core features:
 
--**Add a Product:** Users can add products with details such as ID, name, price, and stock quantity.
--**Edit a product:**Users can edit existing product information by product ID.
--**Delete a Product:**Users can delete a product from the inventory using its ID.
--**View all Products:**Lists all products with their respective details (ID, name, price, stock).
--**Low Stock Alerts:** Allows users to set a threshold and view products whose stock falls below that threshold.
+- **Add a Product:** Users can add products with details such as ID, name, price, and stock quantity.
+- **Edit a product:** Users can edit existing product information by product ID.
+- **Delete a Product:** Users can delete a product from the inventory using its ID.
+- **View all Products:** Lists all products with their respective details (ID, name, price, stock).
+- **Low Stock Alerts:** Allows users to set a threshold and view products whose stock falls below that threshold.
 
 ### Program Flow
 
