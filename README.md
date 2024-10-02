@@ -26,11 +26,11 @@ The project implements several core features:
 
 ### Program Flow
 
-1.Startup: The program displays a main menu where the user can choose an action.
-2.User Input: The user selects an option (e.g., Add Product, Edit Product) and provides details for the product (ID, name, price, stock).
-3.Product Management: The system processes the user's input (adds, edits, or deletes a product).
-4.View Inventory: The user can view all products or check for products with low stock.
-5.Exit: The user can exit the system at any time.
+1. **Startup:** The program displays a main menu where the user can choose an action.
+2. **User Input:** The user selects an option (e.g., Add Product, Edit Product) and provides details for the product (ID, name, price, stock).
+3. **Product Management:** The system processes the user's input (adds, edits, or deletes a product).
+4. **View Inventory:** The user can view all products or check for products with low stock.
+5. **Exit:** The user can exit the system at any time.
 
 
 ### Conclusion
